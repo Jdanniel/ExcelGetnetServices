@@ -15,5 +15,6 @@ namespace ExcelGetnetServices.Interfaces
         Task<byte[]> LayoutMasivo4(LayoutMasivo4 request);
         Task<byte[]> LayoutMasivoUsuario(LayoutMasivoUsuario request);
         Task<byte[]> LayoutMasivoGetnetMit(LayoutMasivoGetnetMit request);
+        Task<byte[]> LayoutMasivoReingenieria(LayoutMasivoReingenieria request);
     }
 }

@@ -71,5 +71,14 @@ namespace ExcelGetnetServices.Controllers
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 "servicios.xlsx");
         }
+        [HttpGet("LAYOUTMASIVO_REINGENIERIA")]
+        public async Task<IActionResult> GetLayoutMasivoReingenieria([FromQuery] LayoutMasivoReingenieria request)
+        {
+            var res = await _idownload.LayoutMasivoReingenieria(request);
+            return File(
+                res,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "servicios.xlsx");
+        }
     }
 }

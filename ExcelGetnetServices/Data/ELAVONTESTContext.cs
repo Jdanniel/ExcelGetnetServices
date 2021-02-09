@@ -28,6 +28,7 @@ namespace ExcelGetnetServices.Data
         public virtual DbSet<SpLayoutMasivo4> SpLayoutMasivo4s { get; set; }
         public virtual DbSet<SpLayoutMasivoUsuario> SpLayoutMasivoUsuarios { get; set; }
         public virtual DbSet<SpLayoutMasivoGetnetMit> SpLayoutMasivoGetnetMits { get; set; }
+        public virtual DbSet<SpLayoutMasivoReingenieria> SpLayoutMasivoReingenierias { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -86,6 +87,26 @@ namespace ExcelGetnetServices.Data
 
             modelBuilder.Entity<SpLayoutMasivoGetnetMit>(entity =>
             {
+                entity.HasNoKey();
+                entity.Property(e => e.DIAS_SLA_ADMIN)
+                    .HasColumnType("decimal(18,2)")
+                    .HasColumnName("DIAS_SLA_ADMIN");
+                entity.Property(e => e.DIAS_SLA_GLOBAL)
+                    .HasColumnType("decimal(18,2)")
+                    .HasColumnName("DIAS_SLA_GLOBAL");
+            modelBuilder.Entity<SpLayoutMasivoGetnetMit>(entity =>
+            {
+                entity.HasNoKey();
+                entity.Property(e => e.DIAS_SLA_ADMIN)
+                    .HasColumnType("decimal(18,2)")
+                    .HasColumnName("DIAS_SLA_ADMIN");
+                entity.Property(e => e.DIAS_SLA_GLOBAL)
+                    .HasColumnType("decimal(18,2)")
+                    .HasColumnName("DIAS_SLA_GLOBAL");
+            });
+            });
+            
+            modelBuilder.Entity<SpLayoutMasivoReingenieria>(entity => {
                 entity.HasNoKey();
                 entity.Property(e => e.DIAS_SLA_ADMIN)
                     .HasColumnType("decimal(18,2)")
