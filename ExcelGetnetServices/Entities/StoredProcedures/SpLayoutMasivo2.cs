@@ -32,6 +32,7 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public DateTime? FECHA_ATENCION_PROVEEDOR { get; set; }
         public DateTime? FECHA_CIERRE_SISTEMA { get; set; }
         public DateTime? FECHA_ALTA_SISTEMA { get; set; }
+        public string CODIGO_AFILIACION { get; set; }
         public string CODIGO_POSTAL { get; set; }
         public string CONCLUSIONES { get; set; }
         public string CONECTIVIDAD { get; set; }

@@ -175,6 +175,16 @@ namespace ExcelGetnetServices.Services
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.FontColor = XLColor.White;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.Bold = true;
+                worksheet.Column(1).Style.NumberFormat.Format = "@";
+                worksheet.Column(3).Style.NumberFormat.Format = "@";
+                worksheet.Column(25).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(46).Style.NumberFormat.Format = "@";
+                worksheet.Column(47).Style.NumberFormat.Format = "@";
+                worksheet.Column(48).Style.NumberFormat.Format = "@";
+                worksheet.Column(49).Style.NumberFormat.Format = "@";
+                worksheet.Column(50).Style.NumberFormat.Format = "@";
 
                 for (int i = 2; i < data.Count(); i++)
                 {
@@ -186,7 +196,9 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 6).Value = data[i].COLONIA;
                     worksheet.Cell(i, 7).Value = data[i].POBLACION;
                     worksheet.Cell(i, 8).Value = data[i].ESTADO;
+                    worksheet.Cell(i, 9).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
+                    worksheet.Cell(i, 10).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
                     worksheet.Cell(i, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
                                                            .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
@@ -205,8 +217,11 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 19).Value = data[i].ID_TECNICO;
                     worksheet.Cell(i, 20).Value = data[i].PROVEEDOR;
                     worksheet.Cell(i, 21).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(i, 22).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(i, 23).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(i, 24).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
                     worksheet.Cell(i, 25).Value = data[i].CODIGO_POSTAL;
                     worksheet.Cell(i, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
@@ -222,7 +237,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 33).Value = data[i].HORAS_VENCIDAS;
                     worksheet.Cell(i, 34).Value = data[i].TIEMPO_EN_ATENDER;
                     worksheet.Cell(i, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(i, 36).Value = data[i].NIVEL;
+                    worksheet.Cell(i, 36).Value = data[i].CODIGO_AFILIACION;
                     worksheet.Cell(i, 37).Value = data[i].TELEFONOS_EN_CAMPO;
                     worksheet.Cell(i, 38).Value = data[i].CANAL;
                     worksheet.Cell(i, 39).Value = data[i].AFILIACION_AMEX;
@@ -407,6 +422,16 @@ namespace ExcelGetnetServices.Services
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.FontColor = XLColor.White;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.Bold = true;
+                worksheet.Column(1).Style.NumberFormat.Format = "@";
+                worksheet.Column(3).Style.NumberFormat.Format = "@";
+                worksheet.Column(25).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(46).Style.NumberFormat.Format = "@";
+                worksheet.Column(47).Style.NumberFormat.Format = "@";
+                worksheet.Column(48).Style.NumberFormat.Format = "@";
+                worksheet.Column(49).Style.NumberFormat.Format = "@";
+                worksheet.Column(50).Style.NumberFormat.Format = "@";
 
                 for (int i = 2; i < data.Count(); i++)
                 {
@@ -418,7 +443,9 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 6).Value = data[i].COLONIA;
                     worksheet.Cell(i, 7).Value = data[i].POBLACION;
                     worksheet.Cell(i, 8).Value = data[i].ESTADO;
+                    worksheet.Cell(i, 9).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
+                    worksheet.Cell(i, 10).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
                     worksheet.Cell(i, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
                                                            .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
@@ -437,8 +464,11 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 19).Value = data[i].ID_TECNICO;
                     worksheet.Cell(i, 20).Value = data[i].PROVEEDOR;
                     worksheet.Cell(i, 21).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(i, 22).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(i, 23).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(i, 24).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
                     worksheet.Cell(i, 25).Value = data[i].CODIGO_POSTAL;
                     worksheet.Cell(i, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
@@ -454,7 +484,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 33).Value = data[i].HORAS_VENCIDAS;
                     worksheet.Cell(i, 34).Value = data[i].TIEMPO_EN_ATENDER;
                     worksheet.Cell(i, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(i, 36).Value = data[i].NIVEL;
+                    worksheet.Cell(i, 36).Value = data[i].CODIGO_AFILIACION;
                     worksheet.Cell(i, 37).Value = data[i].TELEFONOS_EN_CAMPO;
                     worksheet.Cell(i, 38).Value = data[i].CANAL;
                     worksheet.Cell(i, 39).Value = data[i].AFILIACION_AMEX;
@@ -658,6 +688,16 @@ namespace ExcelGetnetServices.Services
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.FontColor = XLColor.White;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.Bold = true;
+                worksheet.Column(1).Style.NumberFormat.Format = "@";
+                worksheet.Column(3).Style.NumberFormat.Format = "@";
+                worksheet.Column(25).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(46).Style.NumberFormat.Format = "@";
+                worksheet.Column(47).Style.NumberFormat.Format = "@";
+                worksheet.Column(48).Style.NumberFormat.Format = "@";
+                worksheet.Column(49).Style.NumberFormat.Format = "@";
+                worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(76).Style.NumberFormat.Format = "@";
 
                 for (int i = 2; i < data.Count(); i++)
                 {
@@ -669,7 +709,9 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 6).Value = data[i].COLONIA;
                     worksheet.Cell(i, 7).Value = data[i].POBLACION;
                     worksheet.Cell(i, 8).Value = data[i].ESTADO;
+                    worksheet.Cell(i, 9).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
+                    worksheet.Cell(i, 10).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
                     worksheet.Cell(i, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
                                                            .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
@@ -688,8 +730,11 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 19).Value = data[i].ID_TECNICO;
                     worksheet.Cell(i, 20).Value = data[i].PROVEEDOR;
                     worksheet.Cell(i, 21).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(i, 22).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(i, 23).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(i, 24).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
                     worksheet.Cell(i, 25).Value = data[i].CODIGO_POSTAL;
                     worksheet.Cell(i, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
@@ -705,7 +750,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 33).Value = data[i].HORAS_VENCIDAS;
                     worksheet.Cell(i, 34).Value = data[i].VESTIDURAS_GETNET;
                     worksheet.Cell(i, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(i, 36).Value = data[i].NIVEL;
+                    worksheet.Cell(i, 36).Value = data[i].CODIGO_AFILIACION;
                     worksheet.Cell(i, 37).Value = data[i].TELEFONOS_EN_CAMPO;
                     worksheet.Cell(i, 38).Value = data[i].CANAL;
                     worksheet.Cell(i, 39).Value = data[i].AFILIACION_AMEX;
@@ -891,6 +936,16 @@ namespace ExcelGetnetServices.Services
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.FontColor = XLColor.White;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.Bold = true;
+                worksheet.Column(1).Style.NumberFormat.Format = "@";
+                worksheet.Column(3).Style.NumberFormat.Format = "@";
+                worksheet.Column(25).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(46).Style.NumberFormat.Format = "@";
+                worksheet.Column(47).Style.NumberFormat.Format = "@";
+                worksheet.Column(48).Style.NumberFormat.Format = "@";
+                worksheet.Column(49).Style.NumberFormat.Format = "@";
+                worksheet.Column(50).Style.NumberFormat.Format = "@";
 
                 for (int i = 2; i < data.Count(); i++)
                 {
@@ -902,7 +957,9 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 6).Value = data[i].COLONIA;
                     worksheet.Cell(i, 7).Value = data[i].POBLACION;
                     worksheet.Cell(i, 8).Value = data[i].ESTADO;
+                    worksheet.Cell(i, 10).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
+                    worksheet.Cell(i, 11).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
                     worksheet.Cell(i, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
                                                            .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
@@ -921,8 +978,11 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 19).Value = data[i].ID_TECNICO;
                     worksheet.Cell(i, 20).Value = data[i].PROVEEDOR;
                     worksheet.Cell(i, 21).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(i, 22).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(i, 23).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(i, 24).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
                     worksheet.Cell(i, 25).Value = data[i].CODIGO_POSTAL;
                     worksheet.Cell(i, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
@@ -938,7 +998,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 33).Value = data[i].HORAS_VENCIDAS;
                     worksheet.Cell(i, 34).Value = data[i].TIEMPO_EN_ATENDER;
                     worksheet.Cell(i, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(i, 36).Value = data[i].NIVEL;
+                    worksheet.Cell(i, 36).Value = data[i].CODIGO_AFILIACION;
                     worksheet.Cell(i, 37).Value = data[i].TELEFONOS_EN_CAMPO;
                     worksheet.Cell(i, 38).Value = data[i].CANAL;
                     worksheet.Cell(i, 39).Value = data[i].AFILIACION_AMEX;
@@ -1140,6 +1200,17 @@ namespace ExcelGetnetServices.Services
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.FontColor = XLColor.White;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.Bold = true;
+                worksheet.Column(1).Style.NumberFormat.Format = "@";
+                worksheet.Column(3).Style.NumberFormat.Format = "@";
+                worksheet.Column(25).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(46).Style.NumberFormat.Format = "@";
+                worksheet.Column(47).Style.NumberFormat.Format = "@";
+                worksheet.Column(48).Style.NumberFormat.Format = "@";
+                worksheet.Column(49).Style.NumberFormat.Format = "@";
+                worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(76).Style.NumberFormat.Format = "@";
 
                 for (int i = 2; i < data.Count(); i++)
                 {
@@ -1151,7 +1222,9 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 6).Value = data[i].COLONIA;
                     worksheet.Cell(i, 7).Value = data[i].POBLACION;
                     worksheet.Cell(i, 8).Value = data[i].ESTADO;
+                    worksheet.Cell(i, 9).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
+                    worksheet.Cell(i, 10).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
                     worksheet.Cell(i, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
                                                            .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
@@ -1170,8 +1243,11 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 19).Value = data[i].ID_TECNICO;
                     worksheet.Cell(i, 20).Value = data[i].PROVEEDOR;
                     worksheet.Cell(i, 21).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(i, 22).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(i, 23).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(i, 24).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
                     worksheet.Cell(i, 25).Value = data[i].CODIGO_POSTAL;
                     worksheet.Cell(i, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
@@ -1187,7 +1263,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 33).Value = data[i].HORAS_VENCIDAS;
                     worksheet.Cell(i, 34).Value = data[i].VESTIDURAS_GETNET;
                     worksheet.Cell(i, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(i, 36).Value = data[i].NIVEL;
+                    worksheet.Cell(i, 36).Value = data[i].CODIGO_AFILIACION;
                     worksheet.Cell(i, 37).Value = data[i].TELEFONOS_EN_CAMPO;
                     worksheet.Cell(i, 38).Value = data[i].CANAL;
                     worksheet.Cell(i, 39).Value = data[i].AFILIACION_AMEX;
@@ -1392,6 +1468,17 @@ namespace ExcelGetnetServices.Services
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.FontColor = XLColor.White;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.Bold = true;
+                worksheet.Column(1).Style.NumberFormat.Format = "@";
+                worksheet.Column(3).Style.NumberFormat.Format = "@";
+                worksheet.Column(25).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(46).Style.NumberFormat.Format = "@";
+                worksheet.Column(47).Style.NumberFormat.Format = "@";
+                worksheet.Column(48).Style.NumberFormat.Format = "@";
+                worksheet.Column(49).Style.NumberFormat.Format = "@";
+                worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(76).Style.NumberFormat.Format = "@";
 
                 for (int i = 2; i < data.Count(); i++)
                 {
@@ -1403,7 +1490,9 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 6).Value = data[i].COLONIA;
                     worksheet.Cell(i, 7).Value = data[i].POBLACION;
                     worksheet.Cell(i, 8).Value = data[i].ESTADO;
+                    worksheet.Cell(i, 9).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
+                    worksheet.Cell(i, 10).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
                     worksheet.Cell(i, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
                                                            .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
@@ -1422,8 +1511,11 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 19).Value = data[i].ID_TECNICO;
                     worksheet.Cell(i, 20).Value = data[i].PROVEEDOR;
                     worksheet.Cell(i, 21).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(i, 22).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(i, 23).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(i, 24).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
                     worksheet.Cell(i, 25).Value = data[i].CODIGO_POSTAL;
                     worksheet.Cell(i, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
@@ -1439,7 +1531,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 33).Value = data[i].HORAS_VENCIDAS;
                     worksheet.Cell(i, 34).Value = data[i].VESTIDURAS_GETNET;
                     worksheet.Cell(i, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(i, 36).Value = data[i].NIVEL;
+                    worksheet.Cell(i, 36).Value = data[i].CODIGO_AFILIACION;
                     worksheet.Cell(i, 37).Value = data[i].TELEFONOS_EN_CAMPO;
                     worksheet.Cell(i, 38).Value = data[i].CANAL;
                     worksheet.Cell(i, 39).Value = data[i].AFILIACION_AMEX;
@@ -1640,6 +1732,16 @@ namespace ExcelGetnetServices.Services
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.FontColor = XLColor.White;
                 worksheet.Range(1, columns.Count(), 1, 1).Style.Font.Bold = true;
+                worksheet.Column(1).Style.NumberFormat.Format = "@";
+                worksheet.Column(3).Style.NumberFormat.Format = "@";
+                worksheet.Column(25).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(46).Style.NumberFormat.Format = "@";
+                worksheet.Column(47).Style.NumberFormat.Format = "@";
+                worksheet.Column(48).Style.NumberFormat.Format = "@";
+                worksheet.Column(49).Style.NumberFormat.Format = "@";
+                worksheet.Column(50).Style.NumberFormat.Format = "@";
 
                 for (int i = 2; i < data.Count(); i++)
                 {
@@ -1651,7 +1753,9 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 6).Value = data[i].COLONIA;
                     worksheet.Cell(i, 7).Value = data[i].POBLACION;
                     worksheet.Cell(i, 8).Value = data[i].ESTADO;
+                    worksheet.Cell(i, 9).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
+                    worksheet.Cell(i, 10).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
                     worksheet.Cell(i, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
                                                            .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
@@ -1670,8 +1774,11 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 19).Value = data[i].ID_TECNICO;
                     worksheet.Cell(i, 20).Value = data[i].PROVEEDOR;
                     worksheet.Cell(i, 21).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(i, 22).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(i, 23).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(i, 24).Style.NumberFormat.Format = "@";
                     worksheet.Cell(i, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
                     worksheet.Cell(i, 25).Value = data[i].CODIGO_POSTAL;
                     worksheet.Cell(i, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
@@ -1687,7 +1794,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(i, 33).Value = data[i].HORAS_VENCIDAS;
                     worksheet.Cell(i, 34).Value = data[i].VESTIDURAS_GETNET ;
                     worksheet.Cell(i, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(i, 36).Value = data[i].NIVEL;
+                    worksheet.Cell(i, 36).Value = data[i].CODIGO_AFILIACION;
                     worksheet.Cell(i, 37).Value = data[i].TELEFONOS_EN_CAMPO;
                     worksheet.Cell(i, 38).Value = data[i].CANAL;
                     worksheet.Cell(i, 39).Value = data[i].AFILIACION_AMEX;
