@@ -178,7 +178,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(1).Style.NumberFormat.Format = "@";
                 worksheet.Column(3).Style.NumberFormat.Format = "@";
                 worksheet.Column(25).Style.NumberFormat.Format = "@";
-                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(29).Style.NumberFormat.Format = "@";
                 worksheet.Column(30).Style.NumberFormat.Format = "@";
                 worksheet.Column(46).Style.NumberFormat.Format = "@";
                 worksheet.Column(47).Style.NumberFormat.Format = "@";
@@ -426,7 +426,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(1).Style.NumberFormat.Format = "@";
                 worksheet.Column(3).Style.NumberFormat.Format = "@";
                 worksheet.Column(25).Style.NumberFormat.Format = "@";
-                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(29).Style.NumberFormat.Format = "@";
                 worksheet.Column(30).Style.NumberFormat.Format = "@";
                 worksheet.Column(46).Style.NumberFormat.Format = "@";
                 worksheet.Column(47).Style.NumberFormat.Format = "@";
@@ -693,6 +693,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(1).Style.NumberFormat.Format = "@";
                 worksheet.Column(3).Style.NumberFormat.Format = "@";
                 worksheet.Column(25).Style.NumberFormat.Format = "@";
+                worksheet.Column(29).Style.NumberFormat.Format = "@";
                 worksheet.Column(30).Style.NumberFormat.Format = "@";
                 worksheet.Column(46).Style.NumberFormat.Format = "@";
                 worksheet.Column(47).Style.NumberFormat.Format = "@";
@@ -942,7 +943,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(1).Style.NumberFormat.Format = "@";
                 worksheet.Column(3).Style.NumberFormat.Format = "@";
                 worksheet.Column(25).Style.NumberFormat.Format = "@";
-                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(29).Style.NumberFormat.Format = "@";
                 worksheet.Column(30).Style.NumberFormat.Format = "@";
                 worksheet.Column(46).Style.NumberFormat.Format = "@";
                 worksheet.Column(47).Style.NumberFormat.Format = "@";
@@ -1207,7 +1208,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(1).Style.NumberFormat.Format = "@";
                 worksheet.Column(3).Style.NumberFormat.Format = "@";
                 worksheet.Column(25).Style.NumberFormat.Format = "@";
-                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(29).Style.NumberFormat.Format = "@";
                 worksheet.Column(30).Style.NumberFormat.Format = "@";
                 worksheet.Column(46).Style.NumberFormat.Format = "@";
                 worksheet.Column(47).Style.NumberFormat.Format = "@";
@@ -1476,7 +1477,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(1).Style.NumberFormat.Format = "@";
                 worksheet.Column(3).Style.NumberFormat.Format = "@";
                 worksheet.Column(25).Style.NumberFormat.Format = "@";
-                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(29).Style.NumberFormat.Format = "@";
                 worksheet.Column(30).Style.NumberFormat.Format = "@";
                 worksheet.Column(46).Style.NumberFormat.Format = "@";
                 worksheet.Column(47).Style.NumberFormat.Format = "@";
@@ -1740,7 +1741,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(1).Style.NumberFormat.Format = "@";
                 worksheet.Column(3).Style.NumberFormat.Format = "@";
                 worksheet.Column(25).Style.NumberFormat.Format = "@";
-                worksheet.Column(30).Style.NumberFormat.Format = "@";
+                worksheet.Column(29).Style.NumberFormat.Format = "@";
                 worksheet.Column(30).Style.NumberFormat.Format = "@";
                 worksheet.Column(46).Style.NumberFormat.Format = "@";
                 worksheet.Column(47).Style.NumberFormat.Format = "@";
