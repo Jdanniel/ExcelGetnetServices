@@ -1581,16 +1581,15 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 77).Value = data[i].COMENTARIOS;
                     worksheet.Cell(celda, 78).Value = data[i].DESC_GIRO;
                     worksheet.Cell(celda, 79).Value = "";
-                    worksheet.Cell(celda, 80).Value = "";
-                    worksheet.Cell(celda, 81).Value = data[i].MCC;
-                    worksheet.Cell(celda, 82).Value = data[i].INDUSTRIA;
-                    worksheet.Cell(celda, 83).Value = data[i].MSI_SANTANDER;
-                    worksheet.Cell(celda, 84).Value = data[i].MSI_PROSA;
-                    worksheet.Cell(celda, 85).Value = data[i].AMEX_PLAN;
-                    worksheet.Cell(celda, 86).Value = data[i].QPS;
-                    worksheet.Cell(celda, 87).Value = data[i].CARNET;
-                    worksheet.Cell(celda, 88).Value = data[i].APLICATIVO;
-                    worksheet.Cell(celda, 89).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
+                    worksheet.Cell(celda, 80).Value = data[i].MCC;
+                    worksheet.Cell(celda, 81).Value = data[i].INDUSTRIA;
+                    worksheet.Cell(celda, 82).Value = data[i].MSI_SANTANDER;
+                    worksheet.Cell(celda, 83).Value = data[i].MSI_PROSA;
+                    worksheet.Cell(celda, 84).Value = data[i].AMEX_PLAN;
+                    worksheet.Cell(celda, 85).Value = data[i].QPS;
+                    worksheet.Cell(celda, 86).Value = data[i].CARNET;
+                    worksheet.Cell(celda, 87).Value = data[i].APLICATIVO;
+                    worksheet.Cell(celda, 88).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
                     celda++;
                 }
 

@@ -34,7 +34,7 @@ namespace ExcelGetnetServices
         {
 
             services.AddControllers();
-            services.AddDbContext<ELAVONTESTContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DB")));
+            services.AddDbContext<ELAVONTESTContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DB"), sqloptions => sqloptions.CommandTimeout(60)));
             services.AddScoped<IDownload, DownloadServices>();
             services.AddSwaggerGen(c =>
             {
