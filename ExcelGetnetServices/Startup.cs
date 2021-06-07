@@ -32,7 +32,14 @@ namespace ExcelGetnetServices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(o => {
+                o.AddPolicy("CorsPolicy",
+                    builder =>
+                    builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
             services.AddControllers();
             services.AddDbContext<ELAVONTESTContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DB"), sqloptions => sqloptions.CommandTimeout(60)));
             services.AddScoped<IDownload, DownloadServices>();
@@ -67,6 +74,8 @@ namespace ExcelGetnetServices
             });
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

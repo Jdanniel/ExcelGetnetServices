@@ -145,6 +145,7 @@ namespace ExcelGetnetServices.Services
                     Value = request.serie
                 },
             };
+            _context.Database.SetCommandTimeout(4000);
             var data = await _context.SpLayoutMasivos.FromSqlRaw("SP_LAYOUT_MASIVO " +
                     "@FEC_INI, " +
                     "@FEC_FIN, " +
@@ -394,6 +395,7 @@ namespace ExcelGetnetServices.Services
                     Value = request.serie
                 },
             };
+            _context.Database.SetCommandTimeout(4000);
             var data = await _context.SpLayoutMasivo2s.FromSqlRaw("SP_LAYOUT_MASIVO " +
                     "@FEC_INI, " +
                     "@FEC_FIN, " +
@@ -658,6 +660,7 @@ namespace ExcelGetnetServices.Services
                     Value = request.id_falla != null ? request.id_falla : ""
                 },
             };
+            _context.Database.SetCommandTimeout(4000);
             var data = await _context.SpLayoutMasivo3s.FromSqlRaw("SP_LAYOUT_MASIVO_3 " +
                     "@FEC_INI, " +
                     "@FEC_FIN, " +
@@ -911,6 +914,7 @@ namespace ExcelGetnetServices.Services
                     Value = request.serie
                 },
             };
+            _context.Database.SetCommandTimeout(4000);
             var data = await _context.SpLayoutMasivo4s.FromSqlRaw("SP_LAYOUT_MASIVO " +
                     "@FEC_INI, " +
                     "@FEC_FIN, " +
@@ -1174,6 +1178,7 @@ namespace ExcelGetnetServices.Services
                     Value = request.idfalla != null ? request.idfalla : ""
                 },
             };
+            _context.Database.SetCommandTimeout(4000);
             List<SpLayoutMasivoUsuario> data = await _context.SpLayoutMasivoUsuarios.FromSqlRaw("SP_LAYOUT_MASIVO_USUARIO " +
                     "@FEC_INI, " +
                     "@FEC_FIN, " +
@@ -1442,6 +1447,7 @@ namespace ExcelGetnetServices.Services
                     Value = request.id_falla != null ? request.id_falla : ""
                 },
             };
+            _context.Database.SetCommandTimeout(4000);
             var data = await _context.SpLayoutMasivoGetnetMits.FromSqlRaw("SP_LAYOUT_MASIVO_GETNET_MIT " +
                     "@FEC_INI, " +
                     "@FEC_FIN, " +
@@ -1707,6 +1713,7 @@ namespace ExcelGetnetServices.Services
                     Value = request.serie
                 },
             };
+            _context.Database.SetCommandTimeout(4000);
             var data = await _context.SpLayoutMasivoReingenierias.FromSqlRaw("SP_LAYOUT_MASIVO_REINGENIERIA " +
                     "@FEC_INI, " +
                     "@FEC_FIN, " +

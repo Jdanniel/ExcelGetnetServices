@@ -162,7 +162,7 @@ namespace ExcelGetnetServices.Data
         public int? IdCalificaIntento2 { get; set; }
         public int? IdCalificaIntento3 { get; set; }
         public int? IdCalificaIntento4 { get; set; }
-        public long? FolioTelecarga { get; set; }
+        public string FolioTelecarga { get; set; }
         public int? IdTipoEquipo { get; set; }
         public string CorreoEjecutivo { get; set; }
         public string TelefonoComercio { get; set; }

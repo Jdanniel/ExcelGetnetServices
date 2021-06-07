@@ -457,7 +457,10 @@ namespace ExcelGetnetServices.Data
                     .IsUnicode(false)
                     .HasColumnName("FOLIO_TAS");
 
-                entity.Property(e => e.FolioTelecarga).HasColumnName("FOLIO_TELECARGA");
+                entity.Property(e => e.FolioTelecarga)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("FOLIO_TELECARGA");
 
                 entity.Property(e => e.FolioTir)
                     .HasMaxLength(50)
