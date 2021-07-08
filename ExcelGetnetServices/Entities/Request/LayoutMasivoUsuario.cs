@@ -18,5 +18,6 @@ namespace ExcelGetnetServices.Entities.Request
         public string fec_fin_cierre { get; set; }
         public string idservicio { get; set; }
         public string idfalla { get; set; }
+        public string rfc { get; set; }
     }
 }

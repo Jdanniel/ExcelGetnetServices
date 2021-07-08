@@ -1177,6 +1177,14 @@ namespace ExcelGetnetServices.Services
                     Direction =ParameterDirection.Input,
                     Value = request.idfalla != null ? request.idfalla : ""
                 },
+                new SqlParameter()
+                {
+                    ParameterName = "@RFC",
+                    SqlDbType =SqlDbType.VarChar,
+                    Size = 50,
+                    Direction =ParameterDirection.Input,
+                    Value = request.rfc != null ? request.rfc : ""
+                },
             };
             _context.Database.SetCommandTimeout(4000);
             List<SpLayoutMasivoUsuario> data = await _context.SpLayoutMasivoUsuarios.FromSqlRaw("SP_LAYOUT_MASIVO_USUARIO " +
@@ -1190,7 +1198,8 @@ namespace ExcelGetnetServices.Services
                     "@SERIE, " +
                     "@ID_PROVEEDOR, " +
                     "@ID_SERVICIO, " +
-                    "@ID_FALLA", param).ToListAsync();
+                    "@ID_FALLA, " +
+                    "@RFC", param).ToListAsync();
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Reporte Servicios Por Dia");
