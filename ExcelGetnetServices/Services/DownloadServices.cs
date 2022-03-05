@@ -186,6 +186,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(48).Style.NumberFormat.Format = "@";
                 worksheet.Column(49).Style.NumberFormat.Format = "@";
                 worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(65).Style.NumberFormat.Format = "@";
                 int celda = 2;
                 for (int i = 0; i < data.Count(); i++)
                 {
@@ -435,6 +436,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(48).Style.NumberFormat.Format = "@";
                 worksheet.Column(49).Style.NumberFormat.Format = "@";
                 worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(65).Style.NumberFormat.Format = "@";
                 int celda = 2;
                 for (int i = 0; i < data.Count(); i++)
                 {
@@ -703,6 +705,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(48).Style.NumberFormat.Format = "@";
                 worksheet.Column(49).Style.NumberFormat.Format = "@";
                 worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(65).Style.NumberFormat.Format = "@";
                 worksheet.Column(76).Style.NumberFormat.Format = "@";
                 int celda = 2;
                 for (int i = 0; i < data.Count(); i++)
@@ -953,6 +956,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(47).Style.NumberFormat.Format = "@";
                 worksheet.Column(48).Style.NumberFormat.Format = "@";
                 worksheet.Column(49).Style.NumberFormat.Format = "@";
+                worksheet.Column(65).Style.NumberFormat.Format = "@";
                 worksheet.Column(50).Style.NumberFormat.Format = "@";
                 int celda = 2;
                 for (int i = 0; i < data.Count(); i++)
@@ -1229,6 +1233,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(48).Style.NumberFormat.Format = "@";
                 worksheet.Column(49).Style.NumberFormat.Format = "@";
                 worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(65).Style.NumberFormat.Format = "@";
                 worksheet.Column(76).Style.NumberFormat.Format = "@";
                 int celda = 2;
                 for (int i = 0; i < data.Count(); i++)
@@ -1503,6 +1508,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(48).Style.NumberFormat.Format = "@";
                 worksheet.Column(49).Style.NumberFormat.Format = "@";
                 worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(65).Style.NumberFormat.Format = "@";
                 worksheet.Column(76).Style.NumberFormat.Format = "@";
                 int celda = 2;
                 for (int i = 0; i < data.Count(); i++)
@@ -1767,6 +1773,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(48).Style.NumberFormat.Format = "@";
                 worksheet.Column(49).Style.NumberFormat.Format = "@";
                 worksheet.Column(50).Style.NumberFormat.Format = "@";
+                worksheet.Column(65).Style.NumberFormat.Format = "@";
                 int celda = 2;
                 for (int i = 0; i < data.Count(); i++)
                 {
