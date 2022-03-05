@@ -98,5 +98,6 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string APLICATIVO_INSTALADO { get; set; }
         public string APLICATIVO_RETIRADO { get; set; }
         public string CARRIER_INSTALADO { get; set; }
+        public string TIPO_DE_CONFIGURACION_MIT { get; set; }
     }
 }

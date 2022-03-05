@@ -92,5 +92,6 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public Decimal? DIAS_SLA_GLOBAL { get; set; }
         public string COMENTARIOS { get; set; }
         public string AREA_CIERRA { get; set; }
+        public string TIPO_DE_CONFIGURACION_MIT { get; set; }
     }
 }

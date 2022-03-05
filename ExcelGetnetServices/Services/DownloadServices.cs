@@ -1199,7 +1199,7 @@ namespace ExcelGetnetServices.Services
                     "@ID_PROVEEDOR, " +
                     "@ID_SERVICIO, " +
                     "@ID_FALLA, " +
-                    "@RFC", param).ToListAsync();
+                    "@RFC ", param).ToListAsync();
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Reporte Servicios Por Dia");
@@ -1324,6 +1324,10 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 75).Value = data[i].AREA_CIERRA;
                     worksheet.Cell(celda, 76).Value = data[i].ODT_SALESFORCE?.TrimEnd();
                     worksheet.Cell(celda, 77).Value = data[i].COMENTARIOS;
+                    worksheet.Cell(celda, 78).Value = "";
+                    worksheet.Cell(celda, 79).Value = "";
+                    worksheet.Cell(celda, 80).Value = "";
+                    worksheet.Cell(celda, 81).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
                     celda++;
                 }
 
@@ -1673,7 +1677,7 @@ namespace ExcelGetnetServices.Services
                     SqlDbType = SqlDbType.VarChar,
                     Size = 50,
                     Direction = ParameterDirection.Input,
-                    Value = request.id_proveedor != null ? request.id_proveedor : ""
+                    Value = request.id_proveedor != null ? request.id_proveedor : "-1"
                 },
                 new SqlParameter()
                 {
@@ -1696,7 +1700,7 @@ namespace ExcelGetnetServices.Services
                     ParameterName = "@ID_PROYECTO",
                     SqlDbType = SqlDbType.Int,
                     Direction = ParameterDirection.Input,
-                    Value = request.id_proyecto
+                    Value = request.id_proyecto != 0 ? request.id_proyecto : -1
                 },
                 new SqlParameter()
                 {
@@ -1719,7 +1723,7 @@ namespace ExcelGetnetServices.Services
                     ParameterName = "@SERIE",
                     SqlDbType = SqlDbType.Int,
                     Direction = ParameterDirection.Input,
-                    Value = request.serie
+                    Value = request.serie != 0 ? request.serie : -1
                 },
             };
             _context.Database.SetCommandTimeout(4000);
@@ -1863,6 +1867,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 81).Value = data[i].APLICATIVO_INSTALADO;
                     worksheet.Cell(celda, 82).Value = data[i].APLICATIVO_RETIRADO;
                     worksheet.Cell(celda, 83).Value = data[i].CARRIER_INSTALADO;
+                    worksheet.Cell(celda, 84).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
                     celda++;
                 }
 
