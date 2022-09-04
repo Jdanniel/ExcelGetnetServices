@@ -103,5 +103,6 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string CARNET { get; set; }
         public string APLICATIVO { get; set; }
         public string TIPO_DE_CONFIGURACION_MIT { get; set; }
+        public string NegotiationType { get; set; }
     }
 }

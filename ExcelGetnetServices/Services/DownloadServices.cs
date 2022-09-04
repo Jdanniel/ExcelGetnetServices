@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Data;
 using ExcelGetnetServices.Entities.StoredProcedures;
+using Newtonsoft.Json;
 
 namespace ExcelGetnetServices.Services
 {
@@ -24,7 +25,18 @@ namespace ExcelGetnetServices.Services
         {
             _context = context;
         }
-
+        public async Task AddLog(string Layout, string filters, int UserId)
+        {
+            BdmassiveLayoutLog bdmassiveLayoutLog = new BdmassiveLayoutLog()
+            {
+                DateDischarge = DateTime.Now,
+                FiltersJson = filters,
+                Layout = Layout,
+                UserId = UserId
+            };
+            await _context.BdmassiveLayoutLogs.AddAsync(bdmassiveLayoutLog);
+            await _context.SaveChangesAsync();
+        }
         public async Task<byte[]> ExcelTest()
         {
             using (var workbook = new XLWorkbook())
@@ -71,6 +83,8 @@ namespace ExcelGetnetServices.Services
                     status = request.status_servicio;
                 }
             }
+
+            await AddLog("LAYOUTMASIVO", JsonConvert.SerializeObject(request), request.id_usuario);
 
             var param = new SqlParameter[]
             {
@@ -323,6 +337,8 @@ namespace ExcelGetnetServices.Services
                 }
             }
 
+            await AddLog("LAYOUTMASIVO_2", JsonConvert.SerializeObject(request), request.id_usuario);
+
             var param = new SqlParameter[]
             {
                 new SqlParameter()
@@ -572,6 +588,8 @@ namespace ExcelGetnetServices.Services
                     status = request.status_servicio;
                 }
             }
+
+            await AddLog("LAYOUTMASIVO_3", JsonConvert.SerializeObject(request), request.id_usuario);
 
             var param = new SqlParameter[]
             {
@@ -844,6 +862,8 @@ namespace ExcelGetnetServices.Services
                 }
             }
 
+            await AddLog("LAYOUTMASIVO_4", JsonConvert.SerializeObject(request), request.id_usuario);
+
             var param = new SqlParameter[]
             {
                 new SqlParameter()
@@ -1093,6 +1113,8 @@ namespace ExcelGetnetServices.Services
                 }
             }
 
+            await AddLog("LAYOUTMASIVO_USUARIO", JsonConvert.SerializeObject(request), request.id_usuario);
+
             var param = new SqlParameter[]
             {
                 new SqlParameter()
@@ -1333,6 +1355,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 79).Value = "";
                     worksheet.Cell(celda, 80).Value = "";
                     worksheet.Cell(celda, 81).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
+                    worksheet.Cell(celda, 82).Value = data[i].NegotiationType;
                     celda++;
                 }
 
@@ -1375,6 +1398,8 @@ namespace ExcelGetnetServices.Services
                     status = request.status_servicio;
                 }
             }
+
+            await AddLog("LAYOUTMASIVO_MIT", JsonConvert.SerializeObject(request), request.id_usuario);
 
             var param = new SqlParameter[]
             {
@@ -1615,6 +1640,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 86).Value = data[i].CARNET;
                     worksheet.Cell(celda, 87).Value = data[i].APLICATIVO;
                     worksheet.Cell(celda, 88).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
+                    worksheet.Cell(celda, 89).Value = data[i].NegotiationType;
                     celda++;
                 }
 
@@ -1658,6 +1684,8 @@ namespace ExcelGetnetServices.Services
                     status = request.status_servicio;
                 }
             }
+
+            await AddLog("LAYOUTMASIVO_REINGENIERIA", JsonConvert.SerializeObject(request), request.id_usuario);
 
             var param = new SqlParameter[]
             {
@@ -1875,6 +1903,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 82).Value = data[i].APLICATIVO_RETIRADO;
                     worksheet.Cell(celda, 83).Value = data[i].CARRIER_INSTALADO;
                     worksheet.Cell(celda, 84).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
+                    worksheet.Cell(celda, 85).Value = data[i].NegotiationType;
                     celda++;
                 }
 

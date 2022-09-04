@@ -93,5 +93,6 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string COMENTARIOS { get; set; }
         public string AREA_CIERRA { get; set; }
         public string TIPO_DE_CONFIGURACION_MIT { get; set; }
+        public string NegotiationType { get; set; }
     }
 }

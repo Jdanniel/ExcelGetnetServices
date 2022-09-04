@@ -29,10 +29,28 @@ namespace ExcelGetnetServices.Data
         public virtual DbSet<SpLayoutMasivoUsuario> SpLayoutMasivoUsuarios { get; set; }
         public virtual DbSet<SpLayoutMasivoGetnetMit> SpLayoutMasivoGetnetMits { get; set; }
         public virtual DbSet<SpLayoutMasivoReingenieria> SpLayoutMasivoReingenierias { get; set; }
-
+        public virtual DbSet<BdmassiveLayoutLog> BdmassiveLayoutLogs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
+
+            modelBuilder.Entity<BdmassiveLayoutLog>(entity =>
+            {
+                entity.HasKey(e => e.MassiveLayoutId)
+                    .HasName("PK__BDMassiv__A1BC536AFDD55E40");
+
+                entity.ToTable("BDMassiveLayoutLog");
+
+                entity.Property(e => e.DateDischarge).HasColumnType("datetime");
+
+                entity.Property(e => e.FiltersJson)
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Layout)
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<SpLayoutMasivo3>(entity => {
                 entity.HasNoKey();
