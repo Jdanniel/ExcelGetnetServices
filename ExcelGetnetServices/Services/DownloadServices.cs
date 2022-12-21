@@ -1354,8 +1354,21 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 78).Value = "";
                     worksheet.Cell(celda, 79).Value = "";
                     worksheet.Cell(celda, 80).Value = "";
-                    worksheet.Cell(celda, 81).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
-                    worksheet.Cell(celda, 82).Value = data[i].NegotiationType;
+
+                    worksheet.Cell(celda, 81).Value = data[i].INDUSTRIA;
+                    worksheet.Cell(celda, 82).Value = data[i].MSI_SANTANDER;
+                    worksheet.Cell(celda, 83).Value = data[i].MSI_PROSA;
+                    worksheet.Cell(celda, 84).Value = data[i].AMEX_PLAN;
+                    worksheet.Cell(celda, 85).Value = data[i].QPS;
+                    worksheet.Cell(celda, 86).Value = data[i].CARNET;
+                    worksheet.Cell(celda, 87).Value = data[i].APLICATIVO;
+
+
+
+                    worksheet.Cell(celda, 88).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
+                    worksheet.Cell(celda, 89).Value = data[i].NegotiationType;
+                    //worksheet.Cell(celda, 83).Style.NumberFormat.Format = "@";
+                    //worksheet.Cell(celda, 83).Value = data[i].CASO_SF;
                     celda++;
                 }
 
@@ -1535,6 +1548,7 @@ namespace ExcelGetnetServices.Services
                 worksheet.Column(50).Style.NumberFormat.Format = "@";
                 worksheet.Column(65).Style.NumberFormat.Format = "@";
                 worksheet.Column(76).Style.NumberFormat.Format = "@";
+                worksheet.Column(96).Style.NumberFormat.Format = "@";
                 int celda = 2;
                 for (int i = 0; i < data.Count(); i++)
                 {
@@ -1641,6 +1655,13 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 87).Value = data[i].APLICATIVO;
                     worksheet.Cell(celda, 88).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
                     worksheet.Cell(celda, 89).Value = data[i].NegotiationType;
+                    worksheet.Cell(celda, 90).Value = data[i].GLOBALIZADOR;
+                    worksheet.Cell(celda, 91).Value = data[i].IATA_AEROLINEA;
+                    worksheet.Cell(celda, 92).Value = data[i].IATA_MATRIZ;
+                    worksheet.Cell(celda, 93).Value = data[i].IATA;
+                    worksheet.Cell(celda, 94).Value = data[i].AEROLINEA_RP3;
+                    worksheet.Cell(celda, 95).Value = data[i].CAMPANA;
+                    worksheet.Cell(celda, 96).Value = data[i].CASO_SF;
                     celda++;
                 }
 
@@ -1904,6 +1925,8 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 83).Value = data[i].CARRIER_INSTALADO;
                     worksheet.Cell(celda, 84).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
                     worksheet.Cell(celda, 85).Value = data[i].NegotiationType;
+                    worksheet.Cell(celda, 86).Style.NumberFormat.Format = "@";
+                    worksheet.Cell(celda, 86).Value = data[i].CASO_SF;
                     celda++;
                 }
 

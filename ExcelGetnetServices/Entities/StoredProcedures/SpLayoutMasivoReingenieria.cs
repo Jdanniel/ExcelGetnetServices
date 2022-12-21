@@ -100,5 +100,6 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string CARRIER_INSTALADO { get; set; }
         public string TIPO_DE_CONFIGURACION_MIT { get; set; }
         public string NegotiationType { get; set; }
+        public string CASO_SF { get; set; }
     }
 }

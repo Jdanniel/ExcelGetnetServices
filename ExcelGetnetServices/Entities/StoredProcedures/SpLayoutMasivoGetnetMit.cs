@@ -104,5 +104,12 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string APLICATIVO { get; set; }
         public string TIPO_DE_CONFIGURACION_MIT { get; set; }
         public string NegotiationType { get; set; }
+        public string GLOBALIZADOR { get; set; }
+        public string IATA_AEROLINEA { get; set; }
+        public string IATA_MATRIZ { get; set; }
+        public string IATA { get; set; }
+        public string AEROLINEA_RP3 { get; set; }
+        public string CAMPANA { get; set; }
+        public string CASO_SF { get; set; }
     }
 }

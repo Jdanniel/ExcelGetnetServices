@@ -94,5 +94,14 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string AREA_CIERRA { get; set; }
         public string TIPO_DE_CONFIGURACION_MIT { get; set; }
         public string NegotiationType { get; set; }
+        public string INDUSTRIA { get; set; }
+        public string MSI_SANTANDER { get; set; }
+        public string MSI_PROSA { get; set; }
+        public string AMEX_PLAN { get; set; }
+        public string QPS { get; set; }
+        public string CARNET { get; set; }
+        public string DESC_GIRO { get; set; }
+        public string APLICATIVO { get; set; }
+        //public string CASO_SF { get; set; }
     }
 }

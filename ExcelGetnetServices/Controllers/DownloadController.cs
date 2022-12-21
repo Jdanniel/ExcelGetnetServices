@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace ExcelGetnetServices.Controllers
 {
+    /// <summary>
+    /// API PARA DESCARGA DE LAYOUT
+    /// SP QUE USAN MIT - EXEC SP_LAYOUT_MASIVO_GETNET_MIT '21/07/2022','21/07/2022','3','','',-1,'','',-1,'','' 
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class DownloadController : ControllerBase
