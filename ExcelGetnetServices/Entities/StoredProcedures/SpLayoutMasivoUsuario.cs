@@ -54,7 +54,7 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string MOTIVO_CANCELACION { get; set; }
         public string MOTIVO_RECHAZO { get; set; }
         public string EMAIL { get; set; }
-        public int? ROLLOS_A_INSTALAR { get; set; }
+        public string? ROLLOS_A_INSTALAR { get; set; }
         public string NUM_SERIE_TERMINAL_ENTRA { get; set; }
         public string NUM_SERIE_TERMINAL_SALE { get; set; }
         public string NUM_SERIE_TERMINAL_MTO { get; set; }
@@ -94,14 +94,14 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string AREA_CIERRA { get; set; }
         public string TIPO_DE_CONFIGURACION_MIT { get; set; }
         public string NegotiationType { get; set; }
-        public string INDUSTRIA { get; set; }
+        /*public string INDUSTRIA { get; set; }
         public string MSI_SANTANDER { get; set; }
         public string MSI_PROSA { get; set; }
         public string AMEX_PLAN { get; set; }
         public string QPS { get; set; }
         public string CARNET { get; set; }
         public string DESC_GIRO { get; set; }
-        public string APLICATIVO { get; set; }
+        public string APLICATIVO { get; set; }*/
         //public string CASO_SF { get; set; }
     }
 }

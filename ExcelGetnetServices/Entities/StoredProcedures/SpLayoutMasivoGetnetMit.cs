@@ -107,9 +107,9 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string GLOBALIZADOR { get; set; }
         public string IATA_AEROLINEA { get; set; }
         public string IATA_MATRIZ { get; set; }
-        public string IATA { get; set; }
+        //public string IATA { get; set; }
         public string AEROLINEA_RP3 { get; set; }
         public string CAMPANA { get; set; }
-        public string CASO_SF { get; set; }
+        //public string CASO_SF { get; set; }
     }
 }

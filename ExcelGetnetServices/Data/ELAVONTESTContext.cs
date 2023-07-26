@@ -29,6 +29,7 @@ namespace ExcelGetnetServices.Data
         public virtual DbSet<SpLayoutMasivoUsuario> SpLayoutMasivoUsuarios { get; set; }
         public virtual DbSet<SpLayoutMasivoGetnetMit> SpLayoutMasivoGetnetMits { get; set; }
         public virtual DbSet<SpLayoutMasivoReingenieria> SpLayoutMasivoReingenierias { get; set; }
+        public virtual DbSet<SpGetConsultaUnidades> SpGetConsultaUnidades { get; set; }
         public virtual DbSet<BdmassiveLayoutLog> BdmassiveLayoutLogs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,6 +51,11 @@ namespace ExcelGetnetServices.Data
                 entity.Property(e => e.Layout)
                     .HasMaxLength(256)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<SpGetConsultaUnidades>(entity =>
+            {
+                entity.HasNoKey();
             });
 
             modelBuilder.Entity<SpLayoutMasivo3>(entity => {

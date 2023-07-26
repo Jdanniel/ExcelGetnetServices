@@ -21,6 +21,21 @@ namespace ExcelGetnetServices.Controllers
         {
             _idownload = idownload;
         }
+        [HttpGet("Units")]
+        public async Task<IActionResult> GetLayoutMasivo([FromQuery] int idProducto, 
+            [FromQuery] int idStatusUnidad, 
+            [FromQuery] int idCliente, 
+            [FromQuery] int idConectividad, 
+            [FromQuery] int idSoftware, 
+            [FromQuery] int isDaniada,
+            [FromQuery] int idTipoResponsable, 
+            [FromQuery] string idResponsable, 
+            [FromQuery] int idUsuario, 
+            [FromQuery] string searchText)
+        {
+            var res = await _idownload.CreateFileUnidadesExcel4(idProducto, idStatusUnidad, idCliente, idConectividad, idSoftware, isDaniada, idTipoResponsable, idResponsable, idUsuario, searchText);
+            return Ok(res);
+        }
         [HttpGet("LAYOUTMASIVO")]
         public async Task<IActionResult> GetLayoutMasivo([FromQuery] LayoutMasivo request)
         {
@@ -83,6 +98,24 @@ namespace ExcelGetnetServices.Controllers
                 res,
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 "servicios.xlsx");
+        }
+        [HttpGet("LAYOUTMASIVO_REINGENIERIA2")]
+        public async Task<IActionResult> GetLayoutMasivoReingenieria2([FromQuery] LayoutMasivoReingenieria2 request)
+        {
+            var res = await _idownload.LayoutMasivoReingenieria2(request);
+            return File(
+                res,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "serviciosReingenieria.xlsx");
+        }
+        [HttpGet("LAYOUTMASIVO_CONSULTAUNIDAES")]
+        public async Task<IActionResult> GetLayoutConsultaUnidades([FromQuery] ConsultaUnidades request)
+        {
+            var res = await _idownload.LayoutConsultaUnidades(request);
+            return File(
+                res,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "ConsultaUnidades.xlsx");
         }
     }
 }

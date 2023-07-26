@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ExcelGetnetServices.Entities.Request
 {
-    public class LayoutMasivoReingenieria
+    public class LayoutMasivoReingenieria2
     {
         public string fec_ini { get; set; }
         public string fec_fin { get; set; }
@@ -16,6 +16,12 @@ namespace ExcelGetnetServices.Entities.Request
         public int id_proyecto { get; set; }
         public int serie { get; set; }
         public string fec_ini_cierre { get; set; }
-        public string fec_fin_cierre { get; set; } 
+        public string fec_fin_cierre { get; set; }
+        public string afiliacion { get; set; }
+        public string noserie { get; set; }
+        public string rfc { get; set; }
+        public string id_servicio { get; set; }
+        public string id_falla { get; set; }
+
     }
 }

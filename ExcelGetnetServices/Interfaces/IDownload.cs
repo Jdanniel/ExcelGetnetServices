@@ -16,5 +16,8 @@ namespace ExcelGetnetServices.Interfaces
         Task<byte[]> LayoutMasivoUsuario(LayoutMasivoUsuario request);
         Task<byte[]> LayoutMasivoGetnetMit(LayoutMasivoGetnetMit request);
         Task<byte[]> LayoutMasivoReingenieria(LayoutMasivoReingenieria request);
+        Task<byte[]> LayoutMasivoReingenieria2(LayoutMasivoReingenieria2 request);
+        Task<byte[]> LayoutConsultaUnidades(ConsultaUnidades consulta);
+        Task<string> CreateFileUnidadesExcel4(int idProducto, int idStatusUnidad, int idCliente, int idConectividad, int idSoftware, int isDaniada, int idTipoResponsable, string idResponsable, int idUsuario, string searchText);
     }
 }
