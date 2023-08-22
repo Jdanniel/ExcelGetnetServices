@@ -90,6 +90,10 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string NIVEL_SLA_INVENTARIO { get; set; }
         public Decimal? DIAS_SLA_ADMIN { get; set; }
         public Decimal? DIAS_SLA_GLOBAL { get; set; }
+        public string CONECTIVIDAD_INSTALADA { get; set; }
+        public string CONECTIVIDAD_RETIRADA { get; set; }
+        public string APLICATIVO_INSTALADO { get; set; }
+        public string APLICATIVO_RETIRADO { get; set; }
         public string COMENTARIOS { get; set; }
         public string AREA_CIERRA { get; set; }
         public string TIPO_DE_CONFIGURACION_MIT { get; set; }

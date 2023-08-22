@@ -93,6 +93,7 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string COMENTARIOS { get; set; }
         public string ELIMINADOR { get; set; }
         public string TAPA { get; set; }
+        public string BATERIA { get; set; }
         public string CONECTIVIDAD_INSTALADA { get; set; }
         public string CONECTIVIDAD_RETIRADA { get; set; }
         public string APLICATIVO_INSTALADO { get; set; }
