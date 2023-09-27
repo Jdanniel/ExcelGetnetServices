@@ -9,6 +9,7 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
     {
         public int ID_AR { get; set; }
         public string ODT { get; set; }
+        public string OTRO_CLIENTE { get; set; }
         public string ODT_SALESFORCE { get; set; }
         public string MI_COMERCIO { get; set; }
         public string AFILIACION { get; set; }

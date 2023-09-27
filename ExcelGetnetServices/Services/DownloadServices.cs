@@ -1313,7 +1313,7 @@ namespace ExcelGetnetServices.Services
                         worksheet.Cell(celda, 31).Value = data[i].RFC;
                         worksheet.Cell(celda, 32).Value = data[i].RAZON_SOCIAL;
                         worksheet.Cell(celda, 33).Value = data[i].HORAS_VENCIDAS;
-                        worksheet.Cell(celda, 34).Value = data[i].VESTIDURAS_GETNET;
+                        worksheet.Cell(celda, 34).Value = data[i].OTRO_CLIENTE;
                         worksheet.Cell(celda, 35).Value = data[i].SLA_FIJO;
                         worksheet.Cell(celda, 36).Value = data[i].CODIGO_AFILIACION;
                         worksheet.Cell(celda, 37).Value = data[i].TELEFONOS_EN_CAMPO;
