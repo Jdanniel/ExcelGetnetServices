@@ -2263,107 +2263,99 @@ namespace ExcelGetnetServices.Services
                 for (int i = 0; i < data.Count(); i++)
                 {
                     worksheet.Cell(celda, 1).Value = data[i].ODT;
-                    worksheet.Cell(celda, 2).Value = data[i].DISCOVER;
-                    worksheet.Cell(celda, 3).Value = data[i].AFILIACION;
-                    worksheet.Cell(celda, 4).Value = data[i].COMERCIO;
-                    worksheet.Cell(celda, 5).Value = data[i].DIRECCION;
-                    worksheet.Cell(celda, 6).Value = data[i].COLONIA;
-                    worksheet.Cell(celda, 7).Value = data[i].POBLACION;
-                    worksheet.Cell(celda, 8).Value = data[i].ESTADO;
-                    worksheet.Cell(celda, 9).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
-                    worksheet.Cell(celda, 10).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
-                    worksheet.Cell(celda, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
-                                                           .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
-                                                           new EncoderReplacementFallback(string.Empty), new DecoderExceptionFallback()),
-                                                           Encoding.GetEncoding("ISO-8859-8").GetBytes(data[i].DESCRIPCION)));
-                    worksheet.Cell(celda, 12).Value = String.IsNullOrEmpty(data[i].OBSERVACIONES) ? "" : Encoding.ASCII.GetString(Encoding
-                                                           .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
-                                                           new EncoderReplacementFallback(string.Empty), new DecoderExceptionFallback()),
-                                                           Encoding.GetEncoding("ISO-8859-8").GetBytes(data[i].OBSERVACIONES)));
-                    worksheet.Cell(celda, 13).Value = data[i].TELEFONO;
-                    worksheet.Cell(celda, 14).Value = data[i].TIPO_COMERCIO_2;
-                    worksheet.Cell(celda, 15).Value = data[i].NIVEL;
-                    worksheet.Cell(celda, 16).Value = data[i].TIPO_SERVICIO;
-                    worksheet.Cell(celda, 17).Value = data[i].SUB_TIPO_SERVICIO;
-                    worksheet.Cell(celda, 18).Value = data[i].CRITERIO_CAMBIO;
-                    worksheet.Cell(celda, 19).Value = data[i].ID_TECNICO;
-                    worksheet.Cell(celda, 20).Value = data[i].PROVEEDOR;
-                    worksheet.Cell(celda, 21).Value = data[i].ESTATUS_SERVICIO;
-                    worksheet.Cell(celda, 22).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
-                    worksheet.Cell(celda, 23).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
-                    worksheet.Cell(celda, 24).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
-                    worksheet.Cell(celda, 25).Value = data[i].CODIGO_POSTAL;
-                    worksheet.Cell(celda, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
-                                                           .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
-                                                           new EncoderReplacementFallback(string.Empty), new DecoderExceptionFallback()),
-                                                           Encoding.GetEncoding("ISO-8859-8").GetBytes(data[i].CONCLUSIONES)));
-                    worksheet.Cell(celda, 27).Value = data[i].CONECTIVIDAD;
-                    worksheet.Cell(celda, 28).Value = data[i].MODELO;
-                    worksheet.Cell(celda, 29).Value = data[i].EQUIPO;
-                    worksheet.Cell(celda, 30).Value = data[i].CAJA;
-                    worksheet.Cell(celda, 31).Value = data[i].RFC;
-                    worksheet.Cell(celda, 32).Value = data[i].RAZON_SOCIAL;
-                    worksheet.Cell(celda, 33).Value = data[i].HORAS_VENCIDAS;
-                    worksheet.Cell(celda, 34).Value = data[i].VESTIDURAS_GETNET;
-                    worksheet.Cell(celda, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(celda, 36).Value = data[i].CODIGO_AFILIACION;
-                    worksheet.Cell(celda, 37).Value = data[i].TELEFONOS_EN_CAMPO;
-                    worksheet.Cell(celda, 38).Value = data[i].CANAL;
-                    worksheet.Cell(celda, 39).Value = data[i].AFILIACION_AMEX;
-                    worksheet.Cell(celda, 40).Value = data[i].IDAMEX;
-                    worksheet.Cell(celda, 41).Value = data[i].PRODUCTO;
-                    worksheet.Cell(celda, 42).Value = data[i].MOTIVO_CANCELACION;
-                    worksheet.Cell(celda, 43).Value = data[i].MOTIVO_RECHAZO;
-                    worksheet.Cell(celda, 44).Value = data[i].EMAIL;
-                    worksheet.Cell(celda, 45).Value = data[i].ROLLOS_A_INSTALAR;
-                    worksheet.Cell(celda, 46).Value = data[i].NUM_SERIE_TERMINAL_ENTRA?.TrimEnd();
-                    worksheet.Cell(celda, 47).Value = data[i].NUM_SERIE_TERMINAL_SALE?.TrimEnd();
-                    worksheet.Cell(celda, 48).Value = data[i].NUM_SERIE_TERMINAL_MTO?.TrimEnd();
-                    worksheet.Cell(celda, 49).Value = data[i].NUM_SERIE_SIM_SALE?.TrimEnd();
-                    worksheet.Cell(celda, 50).Value = data[i].NUM_SERIE_SIM_ENTRA?.TrimEnd();
-                    worksheet.Cell(celda, 51).Value = data[i].VERSIONSW;
-                    worksheet.Cell(celda, 52).Value = data[i].CARGADOR;
-                    worksheet.Cell(celda, 53).Value = data[i].BASE;
-                    worksheet.Cell(celda, 54).Value = data[i].BATERIA;//NUEVO CAMPO
-                    worksheet.Cell(celda, 55).Value = data[i].ROLLO_ENTREGADOS;
-                    worksheet.Cell(celda, 56).Value = data[i].CABLE_CORRIENTE;
-                    worksheet.Cell(celda, 57).Value = data[i].ZONA;
-                    worksheet.Cell(celda, 58).Value = data[i].MODELO_INSTALADO;
-                    worksheet.Cell(celda, 59).Value = data[i].MODELO_TERMINAL_SALE;
-                    worksheet.Cell(celda, 60).Value = data[i].CORREO_EJECUTIVO;
-                    worksheet.Cell(celda, 61).Value = data[i].RECHAZO;
-                    worksheet.Cell(celda, 62).Value = data[i].CONTACTO1;
-                    worksheet.Cell(celda, 63).Value = data[i].ATIENDE_EN_COMERCIO;
-                    worksheet.Cell(celda, 64).Value = data[i].TID_AMEX_CIERRE;
-                    worksheet.Cell(celda, 65).Value = data[i].AFILIACION_AMEX_CIERRE;
-                    worksheet.Cell(celda, 66).Value = data[i].CODIGO;
-                    worksheet.Cell(celda, 67).Value = data[i].TIENE_AMEX;
-                    worksheet.Cell(celda, 68).Value = data[i].ACT_REFERENCIAS;
-                    worksheet.Cell(celda, 69).Value = data[i].TIPO_A_B;
-                    worksheet.Cell(celda, 70).Value = data[i].DIRECCION_ALTERNA_COMERCIO;
-                    worksheet.Cell(celda, 71).Value = data[i].CANTIDAD_ARCHIVOS;
-                    worksheet.Cell(celda, 72).Value = data[i].AREA_CARGA;
-                    worksheet.Cell(celda, 73).Value = data[i].ALTA_POR;
-                    worksheet.Cell(celda, 74).Value = data[i].TIPO_CARGA;
-                    worksheet.Cell(celda, 75).Value = data[i].CERRADO_POR;
-                    worksheet.Cell(celda, 76).Value = data[i].SERIE;
-                    worksheet.Cell(celda, 77).Value = data[i].COMENTARIOS?.ToString().Length >= 32767 ? data[i].COMENTARIOS?.ToString().Substring(0, 32766) : data[i].COMENTARIOS?.ToString();
-                    worksheet.Cell(celda, 78).Value = data[i].ELIMINADOR;
-                    worksheet.Cell(celda, 79).Value = data[i].TAPA;
-                    worksheet.Cell(celda, 80).Value = data[i].CONECTIVIDAD_INSTALADA;
-                    worksheet.Cell(celda, 81).Value = data[i].CONECTIVIDAD_RETIRADA;
-                    worksheet.Cell(celda, 82).Value = data[i].APLICATIVO_INSTALADO;
-                    worksheet.Cell(celda, 83).Value = data[i].APLICATIVO_RETIRADO;
+                    worksheet.Cell(celda, 2).Value = data[i].AFILIACION;
+                    worksheet.Cell(celda, 3).Value = data[i].TIPO_SERVICIO;
+                    worksheet.Cell(celda, 4).Value = data[i].SUB_TIPO_SERVICIO;
+                    worksheet.Cell(celda, 5).Value = data[i].CONCLUSIONES;
+                    worksheet.Cell(celda, 6).Value = data[i].PROVEEDOR;
+                    worksheet.Cell(celda, 7).Style.NumberFormat.Format = "@";
+                    worksheet.Cell(celda, 7).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(celda, 8).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(celda, 9).Value = data[i].NUM_SERIE_TERMINAL_ENTRA;
+                    worksheet.Cell(celda, 10).Value = data[i].NUM_SERIE_SIM_ENTRA;
+                    worksheet.Cell(celda, 11).Value = data[i].APLICATIVO_INSTALADO;
+                    worksheet.Cell(celda, 12).Value = data[i].MODELO_INSTALADO;
+                    worksheet.Cell(celda, 13).Value = data[i].CONECTIVIDAD_INSTALADA;
+                    worksheet.Cell(celda, 14).Value = data[i].NUM_SERIE_TERMINAL_SALE;
+                    worksheet.Cell(celda, 15).Value = data[i].NUM_SERIE_SIM_SALE;
+                    worksheet.Cell(celda, 16).Value = data[i].APLICATIVO_RETIRADO;
+                    worksheet.Cell(celda, 17).Value = data[i].MODELO_TERMINAL_SALE;
+                    worksheet.Cell(celda, 18).Value = data[i].CONECTIVIDAD_RETIRADA;
+                    worksheet.Cell(celda, 19).Value = data[i].ZONA;
+                    worksheet.Cell(celda, 20).Value = data[i].PRODUCTO;
+                    worksheet.Cell(celda, 21).Value = data[i].CONECTIVIDAD;
+                    worksheet.Cell(celda, 22).Value = data[i].MODELO;
+                    worksheet.Cell(celda, 23).Value = data[i].DISCOVER;
+                    worksheet.Cell(celda, 24).Value = data[i].COMERCIO;
+                    worksheet.Cell(celda, 25).Value = data[i].DIRECCION;
+                    worksheet.Cell(celda, 26).Value = data[i].COLONIA;
+                    worksheet.Cell(celda, 27).Value = data[i].POBLACION;
+                    worksheet.Cell(celda, 28).Value = data[i].ESTADO;
+                    worksheet.Cell(celda, 29).Style.NumberFormat.Format = "@";
+                    worksheet.Cell(celda, 29).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
+                    worksheet.Cell(celda, 30).Style.NumberFormat.Format = "@";
+                    worksheet.Cell(celda, 30).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
+                    worksheet.Cell(celda, 31).Value = data[i].DESCRIPCION;
+                    worksheet.Cell(celda, 32).Value = data[i].OBSERVACIONES;
+                    worksheet.Cell(celda, 33).Value = data[i].TELEFONO;
+                    worksheet.Cell(celda, 34).Value = data[i].TIPO_COMERCIO_2;
+                    worksheet.Cell(celda, 35).Value = data[i].NIVEL;
+                    worksheet.Cell(celda, 36).Value = data[i].CRITERIO_CAMBIO;
+                    worksheet.Cell(celda, 37).Value = data[i].ID_TECNICO;
+                    worksheet.Cell(celda, 38).Style.NumberFormat.Format = "@";
+                    worksheet.Cell(celda, 38).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(celda, 39).Style.NumberFormat.Format = "@";
+                    worksheet.Cell(celda, 39).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
+                    worksheet.Cell(celda, 40).Value = data[i].CODIGO_POSTAL;
+                    worksheet.Cell(celda, 41).Value = data[i].EQUIPO;
+                    worksheet.Cell(celda, 42).Value = data[i].CAJA;
+                    worksheet.Cell(celda, 43).Value = data[i].RFC;
+                    worksheet.Cell(celda, 44).Value = data[i].RAZON_SOCIAL;
+                    worksheet.Cell(celda, 45).Value = data[i].HORAS_VENCIDAS;
+                    worksheet.Cell(celda, 46).Value = data[i].VESTIDURAS_GETNET;
+                    worksheet.Cell(celda, 47).Value = data[i].SLA_FIJO;
+                    worksheet.Cell(celda, 48).Value = data[i].CODIGO_AFILIACION;
+                    worksheet.Cell(celda, 49).Value = data[i].TELEFONOS_EN_CAMPO;
+                    worksheet.Cell(celda, 50).Value = data[i].CANAL;
+                    worksheet.Cell(celda, 51).Value = data[i].AFILIACION_AMEX;
+                    worksheet.Cell(celda, 52).Value = data[i].IDAMEX;
+                    worksheet.Cell(celda, 53).Value = data[i].MOTIVO_CANCELACION;
+                    worksheet.Cell(celda, 54).Value = data[i].MOTIVO_RECHAZO;
+                    worksheet.Cell(celda, 55).Value = data[i].EMAIL;
+                    worksheet.Cell(celda, 56).Value = data[i].ROLLOS_A_INSTALAR;
+                    worksheet.Cell(celda, 57).Value = data[i].NUM_SERIE_TERMINAL_MTO;
+                    worksheet.Cell(celda, 58).Value = data[i].VERSIONSW;
+                    worksheet.Cell(celda, 59).Value = data[i].CARGADOR;
+                    worksheet.Cell(celda, 60).Value = data[i].BASE;
+                    worksheet.Cell(celda, 61).Value = data[i].BATERIA;
+                    worksheet.Cell(celda, 62).Value = data[i].ROLLO_ENTREGADOS;
+                    worksheet.Cell(celda, 63).Value = data[i].CABLE_CORRIENTE;
+                    worksheet.Cell(celda, 64).Value = data[i].CORREO_EJECUTIVO;
+                    worksheet.Cell(celda, 65).Value = data[i].RECHAZO;
+                    worksheet.Cell(celda, 66).Value = data[i].CONTACTO1;
+                    worksheet.Cell(celda, 67).Value = data[i].ATIENDE_EN_COMERCIO;
+                    worksheet.Cell(celda, 68).Value = data[i].TID_AMEX_CIERRE;
+                    worksheet.Cell(celda, 69).Value = data[i].AFILIACION_AMEX_CIERRE;
+                    worksheet.Cell(celda, 70).Value = data[i].CODIGO;
+                    worksheet.Cell(celda, 71).Value = data[i].TIENE_AMEX;
+                    worksheet.Cell(celda, 72).Value = data[i].ACT_REFERENCIAS;
+                    worksheet.Cell(celda, 73).Value = data[i].TIPO_A_B;
+                    worksheet.Cell(celda, 74).Value = data[i].DIRECCION_ALTERNA_COMERCIO;
+                    worksheet.Cell(celda, 75).Value = data[i].CANTIDAD_ARCHIVOS;
+                    worksheet.Cell(celda, 76).Value = data[i].AREA_CARGA;
+                    worksheet.Cell(celda, 77).Value = data[i].ALTA_POR;
+                    worksheet.Cell(celda, 78).Value = data[i].TIPO_CARGA;
+                    worksheet.Cell(celda, 79).Value = data[i].CERRADO_POR;
+                    worksheet.Cell(celda, 80).Value = data[i].SERIE;
+                    worksheet.Cell(celda, 81).Value = data[i].COMENTARIOS;
+                    worksheet.Cell(celda, 82).Value = data[i].ELIMINADOR;
+                    worksheet.Cell(celda, 83).Value = data[i].TAPA;
                     worksheet.Cell(celda, 84).Value = data[i].CARRIER_INSTALADO;
                     worksheet.Cell(celda, 85).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
                     worksheet.Cell(celda, 86).Value = data[i].NegotiationType;
                     worksheet.Cell(celda, 87).Style.NumberFormat.Format = "@";
                     worksheet.Cell(celda, 87).Value = data[i].CASO_SF;
+
                     celda++;
                 }
 
@@ -2386,7 +2378,7 @@ namespace ExcelGetnetServices.Services
             try
             {
 
-                string conn = "Server=192.168.100.56;Persist Security Info=True;connect timeout=400000;Database=MIC;User Id=sa;Password=b4ckl45h;";
+                string conn = "Server=192.168.101.3;Persist Security Info=True;connect timeout=400000;Database=MIC;User Id=api-excelservices-prod;Password=YmWASCIz4S0Kp6nxdHaWiTlQd;TrustServerCertificate=True;";
                 
                 using (XLWorkbook workbook = new XLWorkbook())
                 {
