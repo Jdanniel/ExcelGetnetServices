@@ -2355,6 +2355,7 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(celda, 86).Value = data[i].NegotiationType;
                     worksheet.Cell(celda, 87).Style.NumberFormat.Format = "@";
                     worksheet.Cell(celda, 87).Value = data[i].CASO_SF;
+                    worksheet.Cell(celda, 88).Value = data[i].CAUSA_PENDIENTE_INVENTARIO;
 
                     celda++;
                 }

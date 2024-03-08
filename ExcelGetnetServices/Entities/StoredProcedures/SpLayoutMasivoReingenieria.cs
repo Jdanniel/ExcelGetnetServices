@@ -102,5 +102,6 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         public string TIPO_DE_CONFIGURACION_MIT { get; set; }
         public string NegotiationType { get; set; }
         public string CASO_SF { get; set; }
+        public string CAUSA_PENDIENTE_INVENTARIO { get; set; }
     }
 }
