@@ -1,23 +1,19 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
+using ExcelGetnetServices.Data;
+using ExcelGetnetServices.Entities.Request;
+using ExcelGetnetServices.Entities.StoredProcedures;
+using ExcelGetnetServices.Interfaces;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
-using System.Web;
-using System.Threading.Tasks;
-using ExcelGetnetServices.Interfaces;
-using ExcelGetnetServices.Entities.Request;
-using Microsoft.Data.SqlClient;
-using ExcelGetnetServices.Data;
-using Microsoft.EntityFrameworkCore;
 using System.Text;
-using System.Data;
-using ExcelGetnetServices.Entities.StoredProcedures;
-using Newtonsoft.Json;
-using Microsoft.IdentityModel.Protocols;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.Wordprocessing;
-using System.Reflection.PortableExecutable;
+using System.Threading.Tasks;
 
 namespace ExcelGetnetServices.Services
 {
@@ -1402,134 +1398,54 @@ namespace ExcelGetnetServices.Services
         }
         public async Task<byte[]> LayoutMasivoGetnetMit(LayoutMasivoGetnetMit request)
         {
-            var statusarray = request.status_servicio?.Split(',');  // now you have an array of 3 strings
-            bool isStatusthree = false;
-            string status = "";
-
-            if (statusarray != null)
+            var status = request.status_servicio?.Trim();
+            if (!string.IsNullOrWhiteSpace(status))
             {
-                for (int i = 0; i < statusarray.Length; i++)
-                {
-                    if (statusarray[i].Equals("3"))
-                    {
-                        isStatusthree = true;
-                    }
-                }
-                if (isStatusthree)
-                {
-                    status = String.Join(",", statusarray);
-                    status += ",4,5,13,35";
-                }
-                if (status.Length == 0)
-                {
-                    status = request.status_servicio;
-                }
+                var parts = status.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                if (parts.Contains("3"))
+                    status = string.Join(",", parts.Concat(new[] { "4", "5", "13", "35" }).Distinct());
             }
 
             await AddLog("LAYOUTMASIVO_MIT", JsonConvert.SerializeObject(request), request.id_usuario);
 
-            var param = new SqlParameter[]
+            static SqlParameter Varchar(string name, string? val, int size = 50) =>
+                new(name, SqlDbType.VarChar, size) { Value = val ?? "" };
+
+            static SqlParameter Int32(string name, int? val) =>
+                new(name, SqlDbType.Int) { Value = (object?)val ?? DBNull.Value };
+
+            var param = new[]
             {
-                new SqlParameter()
-                {
-                    ParameterName = "@FEC_INI",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = request.fec_ini != null ? request.fec_ini : ""
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@FEC_FIN",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = request.fec_fin != null ? request.fec_fin : ""
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@ID_PROVEEDOR",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = request.id_proveedor != null ? request.id_proveedor : ""
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@STATUS_SERVICIO",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = status
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@ID_ZONA",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = request.id_zona != null ? request.id_zona : ""
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@ID_PROYECTO",
-                    SqlDbType =SqlDbType.Int,
-                    Direction =ParameterDirection.Input,
-                    Value = request.id_proyecto
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@FEC_INI_CIERRE",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = request.fec_ini_cierre != null ? request.fec_ini_cierre : ""
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@FEC_FIN_CIERRE",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = request.fec_fin_cierre != null ? request.fec_fin_cierre : ""
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@SERIE",
-                    SqlDbType =SqlDbType.Int,
-                    Direction =ParameterDirection.Input,
-                    Value = request.serie
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@ID_SERVICIO",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = request.id_servicio != null ? request.id_servicio : ""
-                },
-                new SqlParameter()
-                {
-                    ParameterName = "@ID_FALLA",
-                    SqlDbType =SqlDbType.VarChar,
-                    Size = 50,
-                    Direction =ParameterDirection.Input,
-                    Value = request.id_falla != null ? request.id_falla : ""
-                },
+                Varchar("@FEC_INI",        request.fec_ini),
+                Varchar("@FEC_FIN",        request.fec_fin),
+                Varchar("@ID_PROVEEDOR",   request.id_proveedor),
+                Varchar("@STATUS_SERVICIO",status),
+                Varchar("@ID_ZONA",        request.id_zona),
+                Int32 ("@ID_PROYECTO",     request.id_proyecto),
+                Varchar("@FEC_INI_CIERRE", request.fec_ini_cierre),
+                Varchar("@FEC_FIN_CIERRE", request.fec_fin_cierre),
+                Int32 ("@SERIE",           request.serie),
+                Varchar("@ID_SERVICIO",    request.id_servicio),
+                Varchar("@ID_FALLA",       request.id_falla),
             };
+
             _context.Database.SetCommandTimeout(4000);
-            var data = await _context.SpLayoutMasivoGetnetMits.FromSqlRaw("SP_LAYOUT_MASIVO_GETNET_MIT " +
-                    "@FEC_INI, " +
-                    "@FEC_FIN, " +
-                    "@ID_PROVEEDOR," +
-                    "@STATUS_SERVICIO, " +
-                    "@ID_ZONA, " +
-                    "@ID_PROYECTO, " +
-                    "@FEC_INI_CIERRE, " +
-                    "@FEC_FIN_CIERRE, " +
-                    "@SERIE," +
-                    "@ID_SERVICIO, " +
-                    "@ID_FALLA", param).ToListAsync();
+
+            var data = _context.SpLayoutMasivoGetnetMits
+                .FromSqlRaw("EXEC SP_LAYOUT_MASIVO_GETNET_MIT " +
+                "@FEC_INI, " +
+                "@FEC_FIN, " +
+                "@ID_PROVEEDOR, " +
+                "@STATUS_SERVICIO, " +
+                "@ID_ZONA, " +
+                "@ID_PROYECTO, " +
+                "@FEC_INI_CIERRE, " +
+                "@FEC_FIN_CIERRE, " +
+                "@SERIE, " +
+                "@ID_SERVICIO, " +
+                "@ID_FALLA", param)
+                .AsNoTracking()
+                .AsAsyncEnumerable();
 
             using (var workbook = new XLWorkbook())
             {
@@ -1546,145 +1462,129 @@ namespace ExcelGetnetServices.Services
                     column++;
                 }
 
-                worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 128, 255);
-                worksheet.Range(1, columns.Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;
-                worksheet.Range(1, columns.Count(), 1, 1).Style.Font.FontColor = XLColor.White;
-                worksheet.Range(1, columns.Count(), 1, 1).Style.Font.Bold = true;
-                worksheet.Column(1).Style.NumberFormat.Format = "@";
-                worksheet.Column(3).Style.NumberFormat.Format = "@";
-                worksheet.Column(25).Style.NumberFormat.Format = "@";
-                worksheet.Column(29).Style.NumberFormat.Format = "@";
-                worksheet.Column(30).Style.NumberFormat.Format = "@";
-                worksheet.Column(46).Style.NumberFormat.Format = "@";
-                worksheet.Column(47).Style.NumberFormat.Format = "@";
-                worksheet.Column(48).Style.NumberFormat.Format = "@";
-                worksheet.Column(49).Style.NumberFormat.Format = "@";
-                worksheet.Column(50).Style.NumberFormat.Format = "@";
-                worksheet.Column(65).Style.NumberFormat.Format = "@";
-                worksheet.Column(76).Style.NumberFormat.Format = "@";
-                worksheet.Column(96).Style.NumberFormat.Format = "@";
+                var headerRange = worksheet.Range(1, 1, 1, columns.Count);
+                headerRange.Style.Fill.BackgroundColor = XLColor.FromArgb(0, 128, 255);
+                headerRange.Style.Fill.PatternType = XLFillPatternValues.Solid;
+                headerRange.Style.Font.FontColor = XLColor.White;
+                headerRange.Style.Font.Bold = true;
+
+                int[] textCols = { 1, 3, 25, 29, 30, 46, 47, 48, 49, 50, 65, 76, 96 };
+                foreach (var c in textCols) worksheet.Column(c).Style.NumberFormat.Format = "@";
+
                 int celda = 2;
-                for (int i = 0; i < data.Count(); i++)
+                string dtFmt = "dd/MM/yyyy HH:mm:ss";
+
+                await foreach (var r in data)
                 {
-                    worksheet.Cell(celda, 1).Value = data[i].ODT;
-                    worksheet.Cell(celda, 2).Value = data[i].MI_COMERCIO;
-                    worksheet.Cell(celda, 3).Value = data[i].AFILIACION;
-                    worksheet.Cell(celda, 4).Value = data[i].COMERCIO;
-                    worksheet.Cell(celda, 5).Value = data[i].DIRECCION;
-                    worksheet.Cell(celda, 6).Value = data[i].COLONIA;
-                    worksheet.Cell(celda, 7).Value = data[i].POBLACION;
-                    worksheet.Cell(celda, 8).Value = data[i].ESTADO;
-                    worksheet.Cell(celda, 9).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 9).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA);
-                    worksheet.Cell(celda, 10).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 10).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_VENCIMIENTO);
-                    worksheet.Cell(celda, 11).Value = String.IsNullOrEmpty(data[i].DESCRIPCION) ? "" : Encoding.ASCII.GetString(Encoding
-                                                           .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
-                                                           new EncoderReplacementFallback(string.Empty), new DecoderExceptionFallback()),
-                                                           Encoding.GetEncoding("ISO-8859-8").GetBytes(data[i].DESCRIPCION)));
-                    worksheet.Cell(celda, 12).Value = String.IsNullOrEmpty(data[i].OBSERVACIONES) ? "" : Encoding.ASCII.GetString(Encoding
-                                                           .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
-                                                           new EncoderReplacementFallback(string.Empty), new DecoderExceptionFallback()),
-                                                           Encoding.GetEncoding("ISO-8859-8").GetBytes(data[i].OBSERVACIONES)));
-                    worksheet.Cell(celda, 13).Value = data[i].TELEFONO;
-                    worksheet.Cell(celda, 14).Value = data[i].TIPO_COMERCIO_2;
-                    worksheet.Cell(celda, 15).Value = data[i].NIVEL;
-                    worksheet.Cell(celda, 16).Value = data[i].TIPO_SERVICIO;
-                    worksheet.Cell(celda, 17).Value = data[i].SUB_TIPO_SERVICIO;
-                    worksheet.Cell(celda, 18).Value = data[i].CRITERIO_CAMBIO;
-                    worksheet.Cell(celda, 19).Value = data[i].ID_TECNICO;
-                    worksheet.Cell(celda, 20).Value = data[i].PROVEEDOR;
-                    worksheet.Cell(celda, 21).Value = data[i].ESTATUS_SERVICIO;
+                    worksheet.Cell(celda, 1).Value = r.ODT;
+                    worksheet.Cell(celda, 2).Value = r.MI_COMERCIO;
+                    worksheet.Cell(celda, 3).Value = r.AFILIACION;
+                    worksheet.Cell(celda, 4).Value = r.COMERCIO;
+                    worksheet.Cell(celda, 5).Value = r.DIRECCION;
+                    worksheet.Cell(celda, 6).Value = r.COLONIA;
+                    worksheet.Cell(celda, 7).Value = r.POBLACION;
+                    worksheet.Cell(celda, 8).Value = r.ESTADO;
+                    worksheet.Cell(celda, 9).Value  = r.FECHA_ALTA;
+                    worksheet.Cell(celda, 9).Style.DateFormat.Format = dtFmt;
+                    worksheet.Cell(celda, 10).Value  = r.FECHA_VENCIMIENTO;
+                    worksheet.Cell(celda, 10).Style.DateFormat.Format = dtFmt;
+                    worksheet.Cell(celda, 11).Value = Clean(r.DESCRIPCION);
+                    worksheet.Cell(celda, 12).Value = Clean(r.OBSERVACIONES);
+                    worksheet.Cell(celda, 13).Value = r.TELEFONO;
+                    worksheet.Cell(celda, 14).Value = r.TIPO_COMERCIO_2;
+                    worksheet.Cell(celda, 15).Value = r.NIVEL;
+                    worksheet.Cell(celda, 16).Value = r.TIPO_SERVICIO;
+                    worksheet.Cell(celda, 17).Value = r.SUB_TIPO_SERVICIO;
+                    worksheet.Cell(celda, 18).Value = r.CRITERIO_CAMBIO;
+                    worksheet.Cell(celda, 19).Value = r.ID_TECNICO;
+                    worksheet.Cell(celda, 20).Value = r.PROVEEDOR;
+                    worksheet.Cell(celda, 21).Value = r.ESTATUS_SERVICIO;
                     worksheet.Cell(celda, 22).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ATENCION_PROVEEDOR);
+                    worksheet.Cell(celda, 22).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", r.FECHA_ATENCION_PROVEEDOR);
                     worksheet.Cell(celda, 23).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_CIERRE_SISTEMA);
+                    worksheet.Cell(celda, 23).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", r.FECHA_CIERRE_SISTEMA);
                     worksheet.Cell(celda, 24).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", data[i].FECHA_ALTA_SISTEMA);
-                    worksheet.Cell(celda, 25).Value = data[i].CODIGO_POSTAL;
-                    worksheet.Cell(celda, 26).Value = String.IsNullOrEmpty(data[i].CONCLUSIONES) ? "" : Encoding.ASCII.GetString(Encoding
-                                                           .Convert(Encoding.GetEncoding("ISO-8859-8"), Encoding.GetEncoding(Encoding.ASCII.EncodingName,
-                                                           new EncoderReplacementFallback(string.Empty), new DecoderExceptionFallback()),
-                                                           Encoding.GetEncoding("ISO-8859-8").GetBytes(data[i].CONCLUSIONES)));
-                    worksheet.Cell(celda, 27).Value = data[i].CONECTIVIDAD;
-                    worksheet.Cell(celda, 28).Value = data[i].MODELO;
-                    worksheet.Cell(celda, 29).Value = data[i].EQUIPO;
-                    worksheet.Cell(celda, 30).Value = data[i].CAJA;
-                    worksheet.Cell(celda, 31).Value = data[i].RFC;
-                    worksheet.Cell(celda, 32).Value = data[i].RAZON_SOCIAL;
-                    worksheet.Cell(celda, 33).Value = data[i].HORAS_VENCIDAS;
-                    worksheet.Cell(celda, 34).Value = data[i].VESTIDURAS_GETNET;
-                    worksheet.Cell(celda, 35).Value = data[i].SLA_FIJO;
-                    worksheet.Cell(celda, 36).Value = data[i].CODIGO_AFILIACION;
-                    worksheet.Cell(celda, 37).Value = data[i].TELEFONOS_EN_CAMPO;
-                    worksheet.Cell(celda, 38).Value = data[i].CANAL;
-                    worksheet.Cell(celda, 39).Value = data[i].AFILIACION_AMEX;
-                    worksheet.Cell(celda, 40).Value = data[i].IDAMEX;
-                    worksheet.Cell(celda, 41).Value = data[i].PRODUCTO;
-                    worksheet.Cell(celda, 42).Value = data[i].MOTIVO_CANCELACION;
-                    worksheet.Cell(celda, 43).Value = data[i].MOTIVO_RECHAZO;
-                    worksheet.Cell(celda, 44).Value = data[i].EMAIL;
-                    worksheet.Cell(celda, 45).Value = data[i].ROLLOS_A_INSTALAR;
-                    worksheet.Cell(celda, 46).Value = data[i].NUM_SERIE_TERMINAL_ENTRA?.TrimEnd();
-                    worksheet.Cell(celda, 47).Value = data[i].NUM_SERIE_TERMINAL_SALE?.TrimEnd();
-                    worksheet.Cell(celda, 48).Value = data[i].NUM_SERIE_TERMINAL_MTO?.TrimEnd();
-                    worksheet.Cell(celda, 49).Value = data[i].NUM_SERIE_SIM_SALE?.TrimEnd();
-                    worksheet.Cell(celda, 50).Value = data[i].NUM_SERIE_SIM_ENTRA?.TrimEnd();
-                    worksheet.Cell(celda, 51).Value = data[i].DIVISA;
-                    worksheet.Cell(celda, 52).Value = data[i].CARGADOR;
-                    worksheet.Cell(celda, 53).Value = data[i].BASE;
-                    worksheet.Cell(celda, 54).Value = data[i].ROLLO_ENTREGADOS;
-                    worksheet.Cell(celda, 55).Value = data[i].CABLE_CORRIENTE;
-                    worksheet.Cell(celda, 56).Value = data[i].ZONA;
-                    worksheet.Cell(celda, 57).Value = data[i].MODELO_INSTALADO;
-                    worksheet.Cell(celda, 58).Value = data[i].MODELO_TERMINAL_SALE;
-                    worksheet.Cell(celda, 59).Value = data[i].CORREO_EJECUTIVO;
-                    worksheet.Cell(celda, 60).Value = data[i].RECHAZO;
-                    worksheet.Cell(celda, 61).Value = data[i].CONTACTO1;
-                    worksheet.Cell(celda, 62).Value = data[i].ATIENDE_EN_COMERCIO;
-                    worksheet.Cell(celda, 63).Value = data[i].TID_AMEX_CIERRE;
-                    worksheet.Cell(celda, 64).Value = data[i].AFILIACION_AMEX_CIERRE;
-                    worksheet.Cell(celda, 65).Value = data[i].CODIGO;
-                    worksheet.Cell(celda, 66).Value = data[i].TIENE_AMEX;
-                    worksheet.Cell(celda, 67).Value = data[i].ACT_REFERENCIAS;
-                    worksheet.Cell(celda, 68).Value = data[i].TIPO_A_B;
-                    worksheet.Cell(celda, 69).Value = data[i].DIRECCION_ALTERNA_COMERCIO;
-                    worksheet.Cell(celda, 70).Value = data[i].CANTIDAD_ARCHIVOS;
-                    worksheet.Cell(celda, 71).Value = data[i].AREA_CARGA;
-                    worksheet.Cell(celda, 72).Value = data[i].ALTA_POR;
-                    worksheet.Cell(celda, 73).Value = data[i].TIPO_CARGA;
-                    worksheet.Cell(celda, 74).Value = data[i].CERRADO_POR;
-                    worksheet.Cell(celda, 75).Value = data[i].AREA_CIERRA;
-                    worksheet.Cell(celda, 76).Value = data[i].ODT_SALESFORCE?.TrimEnd();
-                    worksheet.Cell(celda, 77).Value = data[i].COMENTARIOS?.ToString().Length >= 32767 ? data[i].COMENTARIOS?.ToString().Substring(0, 32766) : data[i].COMENTARIOS?.ToString();
-                    worksheet.Cell(celda, 78).Value = data[i].DESC_GIRO;
+                    worksheet.Cell(celda, 24).Value = String.Format("{0:dd/MM/yyyy HH:mm:ss}", r.FECHA_ALTA_SISTEMA);
+                    worksheet.Cell(celda, 25).Value = r.CODIGO_POSTAL;
+                    worksheet.Cell(celda, 26).Value = Clean(r.CONCLUSIONES);
+                    worksheet.Cell(celda, 27).Value = r.CONECTIVIDAD;
+                    worksheet.Cell(celda, 28).Value = r.MODELO;
+                    worksheet.Cell(celda, 29).Value = r.EQUIPO;
+                    worksheet.Cell(celda, 30).Value = r.CAJA;
+                    worksheet.Cell(celda, 31).Value = r.RFC;
+                    worksheet.Cell(celda, 32).Value = r.RAZON_SOCIAL;
+                    worksheet.Cell(celda, 33).Value = r.HORAS_VENCIDAS;
+                    worksheet.Cell(celda, 34).Value = r.VESTIDURAS_GETNET;
+                    worksheet.Cell(celda, 35).Value = r.SLA_FIJO;
+                    worksheet.Cell(celda, 36).Value = r.CODIGO_AFILIACION;
+                    worksheet.Cell(celda, 37).Value = r.TELEFONOS_EN_CAMPO;
+                    worksheet.Cell(celda, 38).Value = r.CANAL;
+                    worksheet.Cell(celda, 39).Value = r.AFILIACION_AMEX;
+                    worksheet.Cell(celda, 40).Value = r.IDAMEX;
+                    worksheet.Cell(celda, 41).Value = r.PRODUCTO;
+                    worksheet.Cell(celda, 42).Value = r.MOTIVO_CANCELACION;
+                    worksheet.Cell(celda, 43).Value = r.MOTIVO_RECHAZO;
+                    worksheet.Cell(celda, 44).Value = r.EMAIL;
+                    worksheet.Cell(celda, 45).Value = r.ROLLOS_A_INSTALAR;
+                    worksheet.Cell(celda, 46).Value = r.NUM_SERIE_TERMINAL_ENTRA?.TrimEnd();
+                    worksheet.Cell(celda, 47).Value = r.NUM_SERIE_TERMINAL_SALE?.TrimEnd();
+                    worksheet.Cell(celda, 48).Value = r.NUM_SERIE_TERMINAL_MTO?.TrimEnd();
+                    worksheet.Cell(celda, 49).Value = r.NUM_SERIE_SIM_SALE?.TrimEnd();
+                    worksheet.Cell(celda, 50).Value = r.NUM_SERIE_SIM_ENTRA?.TrimEnd();
+                    worksheet.Cell(celda, 51).Value = r.DIVISA;
+                    worksheet.Cell(celda, 52).Value = r.CARGADOR;
+                    worksheet.Cell(celda, 53).Value = r.BASE;
+                    worksheet.Cell(celda, 54).Value = r.ROLLO_ENTREGADOS;
+                    worksheet.Cell(celda, 55).Value = r.CABLE_CORRIENTE;
+                    worksheet.Cell(celda, 56).Value = r.ZONA;
+                    worksheet.Cell(celda, 57).Value = r.MODELO_INSTALADO;
+                    worksheet.Cell(celda, 58).Value = r.MODELO_TERMINAL_SALE;
+                    worksheet.Cell(celda, 59).Value = r.CORREO_EJECUTIVO;
+                    worksheet.Cell(celda, 60).Value = r.RECHAZO;
+                    worksheet.Cell(celda, 61).Value = r.CONTACTO1;
+                    worksheet.Cell(celda, 62).Value = r.ATIENDE_EN_COMERCIO;
+                    worksheet.Cell(celda, 63).Value = r.TID_AMEX_CIERRE;
+                    worksheet.Cell(celda, 64).Value = r.AFILIACION_AMEX_CIERRE;
+                    worksheet.Cell(celda, 65).Value = r.CODIGO;
+                    worksheet.Cell(celda, 66).Value = r.TIENE_AMEX;
+                    worksheet.Cell(celda, 67).Value = r.ACT_REFERENCIAS;
+                    worksheet.Cell(celda, 68).Value = r.TIPO_A_B;
+                    worksheet.Cell(celda, 69).Value = r.DIRECCION_ALTERNA_COMERCIO;
+                    worksheet.Cell(celda, 70).Value = r.CANTIDAD_ARCHIVOS;
+                    worksheet.Cell(celda, 71).Value = r.AREA_CARGA;
+                    worksheet.Cell(celda, 72).Value = r.ALTA_POR;
+                    worksheet.Cell(celda, 73).Value = r.TIPO_CARGA;
+                    worksheet.Cell(celda, 74).Value = r.CERRADO_POR;
+                    worksheet.Cell(celda, 75).Value = r.AREA_CIERRA;
+                    worksheet.Cell(celda, 76).Value = r.ODT_SALESFORCE?.TrimEnd();
+                    worksheet.Cell(celda, 77).Value = r.COMENTARIOS?.ToString().Length >= 32767 ? r.COMENTARIOS?.ToString().Substring(0, 32766) : r.COMENTARIOS?.ToString();
+                    worksheet.Cell(celda, 78).Value = r.DESC_GIRO;
                     worksheet.Cell(celda, 79).Value = "";
-                    worksheet.Cell(celda, 80).Value = data[i].MCC;
-                    worksheet.Cell(celda, 81).Value = data[i].INDUSTRIA;
-                    worksheet.Cell(celda, 82).Value = data[i].MSI_SANTANDER;
-                    worksheet.Cell(celda, 83).Value = data[i].MSI_PROSA;
-                    worksheet.Cell(celda, 84).Value = data[i].AMEX_PLAN;
-                    worksheet.Cell(celda, 85).Value = data[i].QPS;
-                    worksheet.Cell(celda, 86).Value = data[i].CARNET;
-                    worksheet.Cell(celda, 87).Value = data[i].APLICATIVO;
-                    worksheet.Cell(celda, 88).Value = data[i].TIPO_DE_CONFIGURACION_MIT;
-                    worksheet.Cell(celda, 89).Value = data[i].NegotiationType;
-                    worksheet.Cell(celda, 90).Value = data[i].GLOBALIZADOR;
+                    worksheet.Cell(celda, 80).Value = r.MCC;
+                    worksheet.Cell(celda, 81).Value = r.INDUSTRIA;
+                    worksheet.Cell(celda, 82).Value = r.MSI_SANTANDER;
+                    worksheet.Cell(celda, 83).Value = r.MSI_PROSA;
+                    worksheet.Cell(celda, 84).Value = r.AMEX_PLAN;
+                    worksheet.Cell(celda, 85).Value = r.QPS;
+                    worksheet.Cell(celda, 86).Value = r.CARNET;
+                    worksheet.Cell(celda, 87).Value = r.APLICATIVO;
+                    worksheet.Cell(celda, 88).Value = r.TIPO_DE_CONFIGURACION_MIT;
+                    worksheet.Cell(celda, 89).Value = r.NegotiationType;
+                    worksheet.Cell(celda, 90).Value = r.GLOBALIZADOR;
                     worksheet.Cell(celda, 91).Style.NumberFormat.Format = "@";
-                    worksheet.Cell(celda, 91).Value = data[i].IATA_AEROLINEA;
-                    worksheet.Cell(celda, 92).Value = data[i].IATA_MATRIZ;
-                    //worksheet.Cell(celda, 93).Value = data[i].IATA;
-                    //worksheet.Cell(celda, 94).Value = data[i].AEROLINEA_RP3;
+                    worksheet.Cell(celda, 91).Value = r.IATA_AEROLINEA;
+                    worksheet.Cell(celda, 92).Value = r.IATA_MATRIZ;
                     worksheet.Cell(celda, 93).Value = "";
-                    worksheet.Cell(celda, 94).Value = data[i].CAMPANA;
-                    //worksheet.Cell(celda, 96).Value = data[i].CASO_SF;
+                    worksheet.Cell(celda, 94).Value = r.CAMPANA;
+                    worksheet.Cell(celda, 95).Value = r.PLANS;
+                    worksheet.Cell(celda, 96).Value = r.PROSA;
+                    worksheet.Cell(celda, 97).Value = r.BANK;
                     celda++;
                 }
 
-                foreach (var itemcolumn in worksheet.ColumnsUsed())
-                {
-                    itemcolumn.AdjustToContents();
-                }
+                worksheet.Row(1).AdjustToContents();
+                worksheet.Columns(1, 10).AdjustToContents();
+                worksheet.Column(11).Width = 60;
 
                 using (var stream = new MemoryStream())
                 {
@@ -1694,7 +1594,14 @@ namespace ExcelGetnetServices.Services
                     return content;
                 }
             }
-
+        }
+        static string Clean(string? s)
+        {
+            if (string.IsNullOrWhiteSpace(s)) return "";
+            // Si realmente necesitas esa conversión:
+            var src = Encoding.GetEncoding("ISO-8859-8");
+            var dst = Encoding.GetEncoding(Encoding.ASCII.EncodingName, new EncoderReplacementFallback(string.Empty), new DecoderExceptionFallback());
+            return Encoding.ASCII.GetString(Encoding.Convert(src, dst, src.GetBytes(s)));
         }
         public async Task<byte[]> LayoutConsultaUnidades(ConsultaUnidades consulta)
         {
@@ -2428,12 +2335,13 @@ namespace ExcelGetnetServices.Services
                     worksheet.Cell(1, 37).Value = "ZONA DESTINO";
                     worksheet.Cell(1, 38).Value = "COSTO";
                     worksheet.Cell(1, 39).Value = "IS NUEVA";
+                    worksheet.Cell(1, 40).Value = "SUBSTATUS";
 
                     if (idCliente == 85)
                     {
-                        worksheet.Cell(1, 40).Value = "FOLIO TELMEX";
-                        worksheet.Cell(1, 41).Value = "PLACA";
-                        worksheet.Cell(1, 42).Value = "VIGENCIA";
+                        worksheet.Cell(1, 41).Value = "FOLIO TELMEX";
+                        worksheet.Cell(1, 42).Value = "PLACA";
+                        worksheet.Cell(1, 43).Value = "VIGENCIA";
                     }
                     worksheet.Range(1, worksheet.ColumnsUsed().Count(), 1, 1).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 128, 255);
                     worksheet.Range(1, worksheet.ColumnsUsed().Count(), 1, 1).Style.Fill.PatternType = XLFillPatternValues.Solid;

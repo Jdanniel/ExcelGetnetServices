@@ -110,6 +110,9 @@ namespace ExcelGetnetServices.Entities.StoredProcedures
         //public string IATA { get; set; }
         public string AEROLINEA_RP3 { get; set; }
         public string CAMPANA { get; set; }
+        public string PROSA { get; set; }
+        public string BANK { get; set; }
+        public string PLANS { get; set; }
         //public string CASO_SF { get; set; }
     }
 }
